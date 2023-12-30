@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Greeting</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #FFB6C1, #87CEEB);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        #welcome {
+            text-align: center;
+            margin-top: -50px;
+        }
+
+        #name {
+            font-size: 1.5rem;
+            padding: 15px;
+            border: 2px solid #FF69B4;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background-color: #FFF5EE;
+        }
+
+        #card {
+            border: 2px solid #1E90FF;
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #F0F8FF;
+            display: none;
+            animation: fadeIn 1s ease;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        #greeting,
+        #message {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #greeting {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1E90FF;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #welcome button {
+            background-color: #FF69B4;
+            color: #FFF;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #copyright {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+        }
+
+        /* Snow animation */
+        .snow {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #FFF;
+            border-radius: 50%;
+            animation: snowfall linear infinite;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100vh);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="welcome">
+        <input type="text" id="name" placeholder="Enter your name">
+        <button onclick="welcome()">Greeting</button>
+        <div id="card">
+            <div id="greeting"></div>
+            <div id="message"></div>
+        </div>
+    </div>
+    <script>
+        function welcome() {
+            var name = document.getElementById("name").value;
+            var greetingDiv = document.getElementById("greeting");
+            var messageDiv = document.getElementById("message");
+            var cardDiv = document.getElementById("card");
+
+            greetingDiv.innerText = `Happy New Year, ${name}! 🎉 From Mohamed Osman`;
+            messageDiv.innerText = `Wishing you a joyous and prosperous 2024! 🌟`;
+
+            // Display the card with animation
+            cardDiv.style.display = "block";
+            cardDiv.classList.add("animated-text");
+
+            // Change background color for a more professional look
+            document.body.style.background = "#f0f8ff";
+            document.body.style.color = "#333";
+
+            // Hide the input and button
+            document.getElementById("name").style.display = "none";
+            document.querySelector("button").style.display = "none";
+
+            // Create snowflakes
+            createSnowflakes();
+        }
+
+        function createSnowflakes() {
+            for (var i = 0; i < 100; i++) {
+                var snowflake = document.createElement("div");
+                snowflake.className = "snow";
+                snowflake.style.left = Math.random() * window.innerWidth + "px";
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
+                document.body.appendChild(snowflake);
+            }
+        }
+    </script>
+    <div id="copyright">
+        &copy; Mohamed Osman
+    </div>
+</body>
+
+</html>
